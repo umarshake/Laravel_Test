@@ -99,7 +99,7 @@ class HomeController extends Controller
                 $properties =array_map(function($item){
                     return 
                         [
-                            $item['uuid'],
+                            // $item['uuid'],
                             $item['county'],
                             $item['country'],
                             $item['town'],
@@ -160,6 +160,7 @@ class HomeController extends Controller
             'num_bathrooms'  => $request->num_bathrooms,
             'price'  => $request->price,
             'for'  => $request->for,
+            'postcode' => $request->postcode,
             'property_type_id'  => $request->property_type_id,
             'created_at'  => date('Y-m-d h:i:s'),
             'updated_at'  => date('Y-m-d h:i:s')

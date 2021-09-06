@@ -37,7 +37,7 @@
                     <table id="datatable" class="table table-responsive table-striped table-bordered table-hover" style="width: 100%;">
                         <thead>
                             <tr>
-                                <th>UUID</th>
+                                <!-- <th>UUID</th> -->
                                 <th>County</th>
                                 <th>Country</th>
                                 <th>Town</th>
