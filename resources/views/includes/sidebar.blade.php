@@ -12,11 +12,6 @@
         </div>
         
         <ul class="nav" id="side-menu">
-
-            <li class="{{ (request()->routeIs('dashboard')) ? 'active' : ''}}">
-                <a href="{{ route('dashboard')}}"> <span class="nav-label">Dashboard</span>  </a>
-            </li>
-            
              <li class=""><a href="{{ route('listdata')}}">{{ "List Data" }}</a></li>
              <li class=""><a href="{{ route('adddata')}}">{{ "Add Data" }}</a></li>
 
