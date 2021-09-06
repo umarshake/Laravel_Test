@@ -14,7 +14,7 @@
 Auth::routes();
 
 Route::get('/', function () {
-    return view('auth.login');
+    return redirect()->route('dashboard');
 });
 
 
@@ -32,7 +32,7 @@ Route::group([],function(){
 
 	Route::get('/dashboard', [
 		'as'	=>	'dashboard',
-		'uses'	=> 	'HomeController@dashboard'
+		'uses'	=> 	'HomeController@listData'
 	]);	
 
 	Route::get('/getdata/{page}', [

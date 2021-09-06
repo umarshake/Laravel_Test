@@ -26,7 +26,7 @@ class FetchProperties extends Command
      * @var string
      */
     protected $description = ' Fetch properties from an api ';
-    private $pages = 0; 
+    private $pages = 10; 
 
     /**
      * Create a new command instance.
@@ -54,9 +54,6 @@ class FetchProperties extends Command
             // Log::notice("Fetching completed for page=".$page);
             RetrieveProperties::dispatch($response)
                     ->delay(now()->addSeconds(5));
-
-            if($this->pages == 0)
-                $this->pages = $response['total_pages'];
 
             $page += 1;
         }while($page <= $this->pages);
