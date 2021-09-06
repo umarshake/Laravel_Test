@@ -35,48 +35,6 @@ class HomeController extends Controller
         return view('blankpage');
     }
 
-    public function getData($page,ApiService $api_service){
-
-        $response = $api_service->getDataFromApi($page);
-
-        try {
-            foreach ($response['data'] as $key => $item) {
-                # code...
-               $id = PropertyType::find($item['property_type_id']);
-                if(! $id) {
-                    $property_type = PropertyType::create($item['property_type']);
-                }
-
-                $property = Property::updateOrCreate([
-                    'uuid' => $item['uuid']
-                ],[
-                    'uuid'  => $item['uuid'],
-                    'county'  => $item['county'],
-                    'country'  => $item['country'],
-                    'town'  => $item['town'],
-                    'description'  => $item['description'],
-                    'address'  => $item['address'],
-                    'latitude'  => $item['latitude'],
-                    'longitude'  => $item['longitude'],
-                    'image_full'  => $item['image_full'],
-                    'image_thumbnail'  => $item['image_thumbnail'],
-                    'num_bedrooms'  => $item['num_bedrooms'],
-                    'num_bathrooms'  => $item['num_bathrooms'],
-                    'price'  => $item['price'],
-                    'for'  => $item['type'],
-                    'property_type_id'  => $item['property_type_id'],
-                    'created_at'  => $item['created_at'],
-                    'updated_at'  => $item['updated_at'],
-                ]);
-            }
-        } catch (\Exception $e) {
-            return $e->getMessage();
-        }
-
-        return "Data Saved Successfully";
-
-    }
-
     public function listData(){
 
         if(request()->ajax()){
@@ -180,7 +138,7 @@ class HomeController extends Controller
         
         $property = Property::where('uuid',$uuid)->first();
         if(! $property)
-            return view('property.list-properties')->with('error', "uuid is not available");
+            return view('property.list-properties')->with('error', "Property is not available");
         $property_types = PropertyType::select('id','title')->get();
 
         return view('property.edit-property',compact('property_types','property'));
@@ -195,6 +153,10 @@ class HomeController extends Controller
     }
 
     public function deleteData($uuid){
+
+        $property = Property::where('uuid',$uuid)->first();
+        if(! $property)
+            return view('property.list-properties')->with('error', "Property is not available");
 
         Property::where('uuid',$uuid)->delete();
 

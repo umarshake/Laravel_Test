@@ -65,6 +65,7 @@
 var APP_URL = {!! json_encode(url('/')) !!};
 console.log(APP_URL);
     dataTable = $("#datatable").DataTable({
+        searching: false,
         serverSide: true,
         processing: true,
         fixedHeader: true,
